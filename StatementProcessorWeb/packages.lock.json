@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "Microsoft.AspNet.WebApi.Client": {
+        "type": "Direct",
+        "requested": "[6.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "zXeWP03dTo67AoDHUzR+/urck0KFssdCKOC+dq7Nv1V2YbFh/nIg09L0/3wSvyRONEdwxGB/ssEGmPNIIhAcAw==",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        }
+      },
+      "Microsoft.AspNetCore.App.Internal.Assets": {
+        "type": "Direct",
+        "requested": "[10.0.7, )",
+        "resolved": "10.0.7",
+        "contentHash": "ao3i+ks0uOQ7FWacI1hqHkUczebmXrGkUB63Xhkc34QbSzG9nYBlDv9v5l6rtCrHMsDW+13kZlpJrSj1HXddqg=="
+      },
+      "Microsoft.AspNetCore.Authentication.Negotiate": {
+        "type": "Direct",
+        "requested": "[10.0.7, )",
+        "resolved": "10.0.7",
+        "contentHash": "KNvuz1rU/rdSIpcKNBfuZ+yB/3ThaCF46mAQktLPtoqX6v2AbANjcw48Zpz1BO0ROJ+tGxTu9l9iA05T4XeWSg==",
+        "dependencies": {
+          "System.DirectoryServices.Protocols": "10.0.7"
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client": {
+        "type": "Direct",
+        "requested": "[10.0.7, )",
+        "resolved": "10.0.7",
+        "contentHash": "P0vOQH/vHTpRBjsqK21CV+JDcppN4+80nhcNhKT61YA2DturJGC5wuQnRVKvMtbi7wW7QNbtpo8+KA+cnE/HQw==",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "10.0.7",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "10.0.7"
+        }
+      },
+      "System.DirectoryServices.AccountManagement": {
+        "type": "Direct",
+        "requested": "[10.0.7, )",
+        "resolved": "10.0.7",
+        "contentHash": "9Bx/qEmR8p5ZjL8T/HZtKONw09y44NoWVCJyXRpmI+DD2xVVuNb9b9GY8s++OoU3i4QDDZt1D/7fuJEAp9zfQg==",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.7",
+          "System.DirectoryServices": "10.0.7",
+          "System.DirectoryServices.Protocols": "10.0.7"
+        }
+      },
+      "Telerik.UI.for.Blazor": {
+        "type": "Direct",
+        "requested": "[13.3.0, )",
+        "resolved": "13.3.0",
+        "contentHash": "x47yZHKAdqAjd4WL/PeAggJCALtySi0n5Rv0QTXhi76r6uizabPE3VIN0jZ1VWXMUB71SJSncP+3jqbvPFDjOQ==",
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "9.5.0",
+          "Telerik.AI.SmartComponents.Extensions": "2.1.0",
+          "Telerik.DataSource": "4.0.1",
+          "Telerik.Documents.Spreadsheet": "2026.1.402",
+          "Telerik.Documents.Spreadsheet.FormatProviders.Pdf": "2026.1.402",
+          "Telerik.Documents.SpreadsheetStreaming": "2026.1.402",
+          "Telerik.FontIcons": "4.8.0",
+          "Telerik.Licensing": "[1.8.2, 2.0.0)",
+          "Telerik.Pivot.Core": "0.1.7",
+          "Telerik.Pivot.DataProviders.Xmla": "0.1.8",
+          "Telerik.Recurrence": "0.2.7",
+          "Telerik.SvgIcons": "4.8.0",
+          "Telerik.Zip": "2026.1.402"
+        }
+      },
+      "Microsoft.AspNetCore.Http.Connections.Client": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "oZzsyHxPfwJg9xLrIow1HRe6Y2w1/ylRKJLbCvePVNZgy/2WeYDk68V+Z20zzs6gXNQS3UjbbdsQai3/ih/CeA=="
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "zItZbjPjkhViHO9cxf0QMlXKHESgoIMcH1yPnlkfC2NVdcyxmcQ8aKdV6LSn4+v1rEiRZgALxSNT9fPwYlCtcA=="
+      },
+      "Microsoft.Extensions.AI": {
+        "type": "Transitive",
+        "resolved": "9.5.0",
+        "contentHash": "RBq/TspXI7UScO5+fHXIrnlDvX8pnvFcHWag3OPPivJgjqmI/RF70dpTPmMIly9dG+z+86kLP2KGkA2UiZ9tVQ==",
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "9.5.0"
+        }
+      },
+      "Microsoft.Extensions.AI.Abstractions": {
+        "type": "Transitive",
+        "resolved": "9.5.0",
+        "contentHash": "Y46j1S4zOPtLAHCUzhHIm1IhCMr7764754bLYupyc1JZcvLNXjUk+VC7H3Bou20S2hHgDJnfox7X/H/3BYEvzA=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
+      "Newtonsoft.Json.Bson": {
+        "type": "Transitive",
+        "resolved": "1.0.2",
+        "contentHash": "QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        }
+      },
+      "System.Configuration.ConfigurationManager": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "NUV7+8ZpwAdtylEypliCwxTyMtt5oARCdEN9hOflL2dq5sGXHKAtBoVs1rb8qEj85ThC/5vJKDQmdiqKxZRgag==",
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "10.0.7"
+        }
+      },
+      "System.DirectoryServices": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "CSYpGw8Q1NVxl2xwH4Y3Fw7ZyUUf/m/9ZWNU4WAFfYqvguxPP21bEJgfGwZWKqwg3awuOLlM9uel5MP2Tc8lRg=="
+      },
+      "System.DirectoryServices.Protocols": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "AemhPGgFaSZ5468giPBAXdwqbyKW9ekhbzQWUy/rSbCf3NdsBOzFg2PBfg08x0sN5UK1oZGa7h9SWCwnwTRxyw=="
+      },
+      "System.Security.Cryptography.Pkcs": {
+        "type": "Transitive",
+        "resolved": "9.0.9",
+        "contentHash": "Y7/wY5lqrzJOu53yLFLPGaeKBcdWNw193udOFRB2joFDVpXLkmfPpfgks7dEIJYPIrW4k3onwR+4nQz6vIaaqA=="
+      },
+      "System.Security.Cryptography.ProtectedData": {
+        "type": "Transitive",
+        "resolved": "10.0.7",
+        "contentHash": "eqKW9wyPUhZi6pxy9Y0fQO/bdHROcwj0tYdmoGEPCPCtCJLFdVVAlzuuYYEnJI64HxhoXPYGhtx891g/jwN4rg=="
+      },
+      "Telerik.AI.SmartComponents.Extensions": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "yuOYXSkQ3orgryqYki0kodCpkRCFqjxybWI4VG4YTeFN+uWOhkX8g1z8yncYzXQhwBKhVjrhHI16g0VV9zpUdQ==",
+        "dependencies": {
+          "Microsoft.Extensions.AI": "9.5.0"
+        }
+      },
+      "Telerik.DataSource": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "YhQc+uVcLYViURMzZClABE1T6FfOdJUjT6/Bc24OcHbmQSzaXTXN77q5fhPpvERXA4kJyLnzEfLR8I8nzrg/ZQ=="
+      },
+      "Telerik.Documents.Core": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "bpku6ZjPq0wRlzAXtFWQy/sUaTar4I5LRCnZvwG43afdgGyvJhwYhq6UKCsEyZUQjFqIhxmuLxiHK3kKpGbDLg==",
+        "dependencies": {
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "Telerik.Documents.Fixed": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "6dBxBW1RJOfCYxzpHkJ+ofoNfGXZAGgKyhDLX/59p2q75tjJFf/AJ4lXklkv38uznV2hwP6DC9hpEBhpRxsuvA==",
+        "dependencies": {
+          "System.Security.Cryptography.Pkcs": "9.0.9",
+          "Telerik.Documents.Core": "[2026.1.402]",
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "Telerik.Documents.Spreadsheet": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "A2trfHlLeCiL7xLsViIuzUKNDtpGNbGwikE7vPuia4J9qTcrc0uLpKE5JUkRrdF4k2OCi+FsWUYQOVCuqKc15A==",
+        "dependencies": {
+          "Telerik.Documents.Core": "[2026.1.402]",
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "Telerik.Documents.Spreadsheet.FormatProviders.Pdf": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "hjOIdHeOcbrAGsN2m6OqcC8c64mO1D3Crd2nzPJ6VZ42Xq6+DCxVJmPB9H1MxC8vk1zaR1EmnmahhihvBH9eJg==",
+        "dependencies": {
+          "Telerik.Documents.Core": "[2026.1.402]",
+          "Telerik.Documents.Fixed": "[2026.1.402]",
+          "Telerik.Documents.Spreadsheet": "[2026.1.402]",
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "Telerik.Documents.SpreadsheetStreaming": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "7Jp+vNaXz3LE+jjJEuTqghJimtFF/vSDoqdg6eD7GIq9etZQyESEMlpvy5hxfDjxDBPBAXlK/zVPYXirVfuY1A==",
+        "dependencies": {
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "Telerik.FontIcons": {
+        "type": "Transitive",
+        "resolved": "4.8.0",
+        "contentHash": "p3sBv3NgyeMwASBzWaTLTFnAaTq24nKXz6ofBC9geqB8r6t6AafIQl3D4T8dtAcB2xqvfTTjAdQIb+sx060BrA=="
+      },
+      "Telerik.Licensing": {
+        "type": "Transitive",
+        "resolved": "1.8.2",
+        "contentHash": "+LEIcXj33e2eyzxAErLejUFI2OuKOCFt4GyGfusf+EH7/YITmBU0381eJVwKyF3ZGux9OSzzmu1oaUPG/NYhLQ=="
+      },
+      "Telerik.Pivot.Core": {
+        "type": "Transitive",
+        "resolved": "0.1.7",
+        "contentHash": "4LiDUL1GjhaMvt8AfSMgVOMmrh1G7lli0AXuw7e3qTsXFYDBvPSYSPDk0F4Vokd6EPNfizdplrgO5talWqI5Bw=="
+      },
+      "Telerik.Pivot.DataProviders.Xmla": {
+        "type": "Transitive",
+        "resolved": "0.1.8",
+        "contentHash": "X0uhDnLT3cHt5dN4OEKhqW2hvsBA4LQkWxtfsVIaXfWCWzfHmDyluRJ7p2Z3rSeqU22lyVE0nfQdmpo5UYL9/Q==",
+        "dependencies": {
+          "Telerik.Pivot.Core": "0.1.7"
+        }
+      },
+      "Telerik.Recurrence": {
+        "type": "Transitive",
+        "resolved": "0.2.7",
+        "contentHash": "RZNtBRKtd2V8VU7oxO+39doBwXKD+W3KZ15j40PEB9R3lzkOpbYk6dWPAFv5d+dV2MAt4J7wUcpe2Ql9DPjeVA=="
+      },
+      "Telerik.SvgIcons": {
+        "type": "Transitive",
+        "resolved": "4.8.0",
+        "contentHash": "CAWiJd6SB+AECyfL7bGjDpzxgoElt6gqEf7aDpUzi8KIgrqvQhum0y9lZa1ez7VtcdzLl6fMgpjTAy8Y9Wapjg=="
+      },
+      "Telerik.Zip": {
+        "type": "Transitive",
+        "resolved": "2026.1.402",
+        "contentHash": "4NWtJNjUZ4z20BPotonuRUo7BhAuwFbat0+GoGvN9OuS2s2fA8DN1SFhnutcaQFRg2L9mJotDXqYCO6N8yJvVQ==",
+        "dependencies": {
+          "Telerik.Licensing": "[1.8.2, 2.0.0)"
+        }
+      },
+      "statementprocessormodels": {
+        "type": "Project"
+      }
+    }
+  }
+}

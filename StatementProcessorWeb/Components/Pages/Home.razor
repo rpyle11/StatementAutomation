@@ -1,0 +1,50 @@
+﻿@page "/"
+@using StatementProcessorModels
+
+<PageTitle>Home</PageTitle>
+
+
+<div class="container">
+   
+    <div class="d-flex justify-content-around">
+        <div class="alert alert-light mt-2 btndiv">
+            <div>
+                <TelerikButton ThemeColor="@(ThemeConstants.Button.ThemeColor.Primary)" ButtonType="ButtonType.Button" OnClick="@SetJobProcess" Enabled="@(!BtnWaitVisible)" Class="btnstyle">
+                    @BtnText
+                    <TelerikLoader Class="loader-indicator" ThemeColor="light" Visible="@BtnWaitVisible"></TelerikLoader>
+                </TelerikButton>
+            </div>
+            <hr />
+            <div>
+                Job ID: <span class="fw-bold">@RunningJob?.Job?.JobId</span>
+            </div>
+           
+           
+        </div>
+        <div class="btndiv text-center ">
+            <div class="alert alert-light  ">
+                <TelerikButton OnClick="@StopProcess" Class="btnstyle" Icon="@SvgIcon.XCircle" ThemeColor="@(ThemeConstants.Button.ThemeColor.Secondary)" ButtonType="ButtonType.Button" Enabled="@CanStop">
+                    Stop
+                    <TelerikLoader Class="loader-indicator" ThemeColor="light" Visible="@IsStopping"></TelerikLoader>
+                </TelerikButton>
+            </div>
+        </div>
+       
+    </div>
+  
+
+    
+   
+
+    <div class="mt-2">
+
+        <TelerikGrid Data="@RunningJob?.JobSteps" ScrollMode="GridScrollMode.Scrollable" Height="550px">
+            <GridColumns>
+                <GridColumn Title="Date/Time" Field="@nameof(JobStepsDto.StepDate)" DisplayFormat="{0:MM/dd/yyyy h:mm:ss tt}" Width="175px"></GridColumn>
+                <GridColumn Title="Message" Field="@nameof(JobStepsDto.StepValue)"></GridColumn>
+            </GridColumns>
+        </TelerikGrid>
+
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@inherits LayoutComponentBase
+
+<TelerikRootComponent>
+    <div class="navbar bg-light nav">
+        <div class="imgholder">
+            <NavLink href="./">
+                <img src="images/GsbLogoSmall.png" alt="" class="imgstyle" id="initialfocusimg" />
+            </NavLink>
+        </div>
+        <div>
+            <span class="titlestyle">Statement Automation</span>
+        </div>
+        <div>
+            <div class="usernav">
+                <div>
+                    <ErrorBoundary>
+                        <UserInfo />
+                    </ErrorBoundary>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="page content">
+            @Body
+        </article>
+       
+        <footer class="text-center">
+            <hr />
+            <p>&copy; 2026 - Statement Automation</p>
+        </footer>
+    </main>
+
+
+    <div id="blazor-error-ui" data-nosnippet>
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+</TelerikRootComponent>

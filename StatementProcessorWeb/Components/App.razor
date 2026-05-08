@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/saweb/" />
+    <ResourcePreloader />
+    <script src="_content/Telerik.UI.for.Blazor/js/telerik-blazor.js" defer></script>
+    <link rel="stylesheet" href="@Assets["bootstrap/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["font-awesome/css/all.min.css"]" />
+    <link rel="stylesheet" href="@Assets["gsbstyles.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["StatementProcessorWeb.styles.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+</head>
+
+<body>
+    <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+    <ReconnectModal />
+    <script src="@Assets["_framework/blazor.web.js"]" autostart="false"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        Blazor.start();
+        });
+    </script>
+</body>
+
+</html>

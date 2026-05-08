@@ -1,0 +1,82 @@
+
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    padding: 1em;
+}
+
+main {
+    flex: 1;
+}
+
+.nav {
+    height: 4.5em;
+}
+
+.imgholder {
+    margin-left: 1.5em;
+    margin-bottom: .25em;
+}
+
+.imgstyle {
+    height: 3.5em;
+}
+
+.titlestyle {
+    font-family: "RobotoBlack";
+    font-size: 2em;
+    color: darkorange;
+}
+
+.usernav {
+    margin-right: 1.5em;
+    text-align: center;
+}
+
+::deep .links a {
+    text-decoration: none !important;
+    color: #3e3f40;
+    font-size: 1em;
+}
+
+    ::deep .links a:hover {
+        color: darkorange;
+        text-decoration: underline;
+    }
+
+
+
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+    .nav {
+        box-shadow: 0 6px 6px -6px lightgray;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1280px) {
+    .nav {
+        box-shadow: 0 11px 8px -8px lightgray;
+    }
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }

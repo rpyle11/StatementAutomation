@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="Compressor.Tests/Compressor.Tests.csproj" />
+  <Project Path="Compressor/Compressor.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="FilePoller.Tests/FilePoller.Tests.csproj" Id="db6f755c-f48a-4309-8fbc-2d5d40a54ced" />
+  <Project Path="FilePoller/FilePoller.csproj" Id="4b814d10-e8ae-44fa-b5f8-4c9462ca1469" />
+  <Project Path="StatementProcessorApi.Tests/StatementProcessorApi.Tests.csproj" Id="79febd08-46b5-48b6-bc90-be46527013d3" />
+  <Project Path="StatementProcessorApi/StatementProcessorApi.csproj" Id="5d6717bb-2b08-46fb-8310-e85e0dd6f9e7" />
+  <Project Path="StatementProcessorModels/StatementProcessorModels.csproj" Id="d24e184c-aaf7-4b56-b4b7-5685208b1339" />
+  <Project Path="StatementProcessorWeb.Tests/StatementProcessorWeb.Tests.csproj" Id="b6d30115-c17d-4dbd-a542-0104f5f7bd89" />
+  <Project Path="StatementProcessorWeb/StatementProcessorWeb.csproj" Id="85d7efc4-d420-46b6-8b58-c86dfa18946e" />
+</Solution>

@@ -12,6 +12,8 @@ using System.Net.Http.Json;
 using System.Reflection;
 using System.Timers;
 using Renci.SshNet;
+using Renci.SshNet.Common;
+using Renci.SshNet.Sftp;
 using Timer = System.Timers.Timer;
 
 
@@ -108,19 +110,23 @@ namespace FilePoller
         {
             try
             {
+                
                 var keyFile = new PrivateKeyFile(settings.Value.KeyFile!);
                 //may need credentials? need ftp info
-                await using var ftpClient = new SftpClient(settings.Value.FtpUrl,22, keyFile);
-                await ftpClient.Connect();
+                using var ftpClient = new SftpClient(settings.Value.FtpUrl!,22, settings.Value.FtpUser!, keyFile);
+
+
+                await ftpClient.ConnectAsync(CancellationToken.None);
 
                 if (ftpClient.IsConnected)
                 {
-                    var items = await ftpClient.GetListing(settings.Value.IncomingUrl);
+                    var items = ftpClient.ListDirectory(settings.Value.IncomingUrl!);
 
-                    if (items.Length > 0)
+                    var sftpFiles = items.ToList();
+                    if (sftpFiles.ToList().Any())
                     {
                         Thread.Sleep(TimeSpan.FromSeconds(10));
-                        var file = items.FirstOrDefault()?.FullName;
+                        var remoteFile = sftpFiles.FirstOrDefault()?.FullName;
 
                         var downloadTo = await dataService.GetDirectory(settings.Value.DownloadToName);
 
@@ -128,21 +134,25 @@ namespace FilePoller
                             throw new DataException(
                                 $"Unable to get directory data for {settings.Value.DownloadToName}");
 
+                        await using (var localStream = File.Create(Path.Combine(downloadTo.UncPath, remoteFile!)))
+                        {
+                            await ftpClient.DownloadFileAsync(sftpFiles.FirstOrDefault()?.FullName!, localStream);
+                        }
 
-                        await WriteLogData($"Downloading file: {file} to {downloadTo.UncPath}");
+                        await WriteLogData($"Downloading file: {remoteFile} to {downloadTo.UncPath}");
 
-                        var downloadStatus = await ftpClient.DownloadFile(Path.Combine(downloadTo.UncPath, Path.GetFileName(file)!), file,FtpLocalExists.Overwrite);
+                      
 
-                        if (downloadStatus == FtpStatus.Success)
+                        if (File.Exists(Path.Combine(downloadTo.UncPath, remoteFile!)))
                         {
 
-                            await WriteLogData($"File: {file} successfully downloaded");
+                            await WriteLogData($"File: {remoteFile} successfully downloaded");
 
-                            await WriteLogData($"Deleting file {Path.GetFileName(file)} from FTP folder");
+                            await WriteLogData($"Deleting file {Path.GetFileName(remoteFile)} from FTP folder");
 
-                            await ftpClient.DeleteFile(file);
+                            await ftpClient.DeleteFileAsync(remoteFile!, CancellationToken.None);
 
-                            return Path.Combine(downloadTo.UncPath, Path.GetFileName(file)!);
+                            return Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!);
                         }
 
 
@@ -151,7 +161,7 @@ namespace FilePoller
                 }
                 else
                 {
-                    throw new FtpException($"Unable to create ftp connection to {settings.Value.FtpUrl}");
+                    throw new SftpException(StatusCode.NoConnection, $"Unable to create ftp connection to {settings.Value.FtpUrl}");
                 }
             }
             catch (Exception ex)
@@ -225,12 +235,12 @@ namespace FilePoller
             {
                 Log.Information(message);
 
-                await stepLogger.WriteProcessLog(new WriteJobStepParameters
-                {
-                    JobId = _currentJob!.JobId,
-                    Message = message,
-                    AppUser = _currentJob.JobUser
-                });
+                //await stepLogger.WriteProcessLog(new WriteJobStepParameters
+                //{
+                //    JobId = _currentJob!.JobId,
+                //    Message = message,
+                //    AppUser = _currentJob.JobUser
+                //});
 
             }
             catch (Exception ex)

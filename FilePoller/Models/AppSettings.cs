@@ -29,5 +29,7 @@ namespace FilePoller.Models
        public string? StepLogUrl { get; set; }
 
        public string? KeyFile { get; set; }
+
+       public string? FtpUser { get; set; }
     }
 }

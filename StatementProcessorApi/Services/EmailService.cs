@@ -3,7 +3,6 @@ using StatementProcessorApi.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
-using System.Runtime;
 using System.Text.RegularExpressions;
 
 namespace StatementProcessorApi.Services

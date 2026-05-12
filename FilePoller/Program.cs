@@ -1,7 +1,5 @@
-using Compressor.Services;
 using FilePoller.Models;
 using FilePoller.Services;
-using Microsoft.Extensions.Hosting.Internal;
 using Serilog;
 
 namespace FilePoller

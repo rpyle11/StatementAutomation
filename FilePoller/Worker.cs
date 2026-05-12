@@ -138,7 +138,7 @@ namespace FilePoller
                             throw new DataException(
                                 $"Unable to get directory data for {settings.Value.DownloadToName}");
 
-                        await using (var localStream = File.Create(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!)))
+                        await using (var localStream = File.Create(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile))))
                         {
                             await ftpClient.DownloadFileAsync(sftpFiles.FirstOrDefault()?.FullName!, localStream);
                         }
@@ -147,16 +147,16 @@ namespace FilePoller
 
                       
 
-                        if (File.Exists(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!)))
+                        if (File.Exists(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile))))
                         {
 
                             await WriteLogData($"File: {Path.GetFileName(remoteFile)} successfully downloaded");
 
                             await WriteLogData($"Deleting file {Path.GetFileName(remoteFile)} from FTP folder");
 
-                            await ftpClient.DeleteFileAsync(remoteFile!, CancellationToken.None);
+                            await ftpClient.DeleteFileAsync(remoteFile, CancellationToken.None);
 
-                            return Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!);
+                            return Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile));
                         }
 
 

@@ -1,13 +1,10 @@
-﻿using Microsoft.Extensions.Options;
+﻿using FilePoller.Models;
+using Microsoft.Extensions.Options;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-using FilePoller;
-using FilePoller.Models;
-using FilePoller.Services;
 
-
-namespace Compressor.Services
+namespace FilePoller.Services
 {
     public class LogService(IOptions<AppSettings> settings, HttpClient httpClient) : ILogService
     {

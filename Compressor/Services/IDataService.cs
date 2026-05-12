@@ -1,5 +1,4 @@
 ﻿using Compressor.Entities;
-using StatementProcessorModels;
 
 namespace Compressor.Services;
 

@@ -1,5 +1,4 @@
 ﻿using Compressor.Models;
-using Serilog;
 
 #pragma warning disable CA1416
 

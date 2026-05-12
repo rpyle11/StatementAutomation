@@ -1,5 +1,6 @@
-using Compressor.Services;
+
 using FilePoller.Models;
+using FilePoller.Services;
 using Microsoft.Extensions.Options;
 using Moq;
 

@@ -1,11 +1,9 @@
 ﻿using Compressor.Entities;
-
+using Compressor.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System.Reflection;
-using Compressor.Models;
-using Microsoft.Extensions.Options;
-using StatementProcessorModels;
 
 namespace Compressor.Services
 {

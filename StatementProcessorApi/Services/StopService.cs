@@ -97,7 +97,7 @@ namespace StatementProcessorApi.Services
             return false;
         }
 
-        private async Task<bool> WriteJob(WriteJobStepParameters parameters)
+        private async Task WriteJob(WriteJobStepParameters parameters)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace StatementProcessorApi.Services
 
                 }, parameters.AppUser);
 
-                return logged;
+               
 
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace StatementProcessorApi.Services
                 });
             }
 
-            return false;
+         
 
         }
     }

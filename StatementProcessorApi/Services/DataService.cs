@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StatementProcessorApi.Entities;
 using StatementProcessorApi.Models;
-using System.Configuration;
 using System.Data;
 using System.Reflection;
-using Telerik.Reporting.Interfaces;
 
 namespace StatementProcessorApi.Services
 {

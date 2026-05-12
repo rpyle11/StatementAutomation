@@ -4,7 +4,7 @@ namespace FilePoller.Models
 {
     public class AppSettings
     {
-        public string? ServiceName { get; set; }
+        public string? ServiceName { get; init; }
 
         public string? AppLogEmailSubject { get; init; }
         [MaxLength(500)]
@@ -12,24 +12,24 @@ namespace FilePoller.Models
         [MaxLength(500)]
         public string? AppLogNotifyEmail { get; init; }
 
-        public int FileChkIntervalSeconds { get; set; }
+        public int FileChkIntervalSeconds { get; init; }
 
-        public string? IncomingUrl { get; set; }
+        public string? IncomingUrl { get; init; }
 
-        public int WaitTimeLoopCount { get; set; }
+        public int WaitTimeLoopCount { get; init; }
 
-        public string? ApiUrl { get; set; }
+        public string? ApiUrl { get; init; }
 
-        public string? FtpUrl { get; set; }
+        public string? FtpUrl { get; init; }
 
-        public string? NextStepPath { get; set; }
+        public string? NextStepPath { get; init; }
 
-        public string? DownloadToName { get; set; }
+        public string? DownloadToName { get; init; }
 
-       public string? StepLogUrl { get; set; }
+       public string? StepLogUrl { get; init; }
 
-       public string? KeyFile { get; set; }
+       public string? KeyFile { get; init; }
 
-       public string? FtpUser { get; set; }
+       public string? FtpUser { get; init; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿
 using FilePoller.Models;
-using Serilog;
 
 #pragma warning disable CA1416
 

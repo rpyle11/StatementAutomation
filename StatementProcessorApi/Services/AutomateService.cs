@@ -5,8 +5,9 @@ using StatementProcessorApi.Models;
 using StatementProcessorModels;
 using System.Reflection;
 using Microsoft.Extensions.Options;
-using FluentFTP;
-using FluentFTP.Exceptions;
+using Renci.SshNet;
+using Renci.SshNet.Common;
+using Renci.SshNet.Sftp;
 
 namespace StatementProcessorApi.Services
 {
@@ -14,7 +15,6 @@ namespace StatementProcessorApi.Services
     {
         public async Task<JobDto?> StartProcess(JobProcessParameters parameters)
         {
-           
 
             try
             {
@@ -22,9 +22,9 @@ namespace StatementProcessorApi.Services
                 JobDto jobData;
 
                 var job = await dataService.ActiveJobExists(parameters.AppUser);
-                if (job==null)
+                if (job == null)
                 {
-                   var newJob = await dataService.AddJob(new Jobs
+                    var newJob = await dataService.AddJob(new Jobs
                     {
                         JobId = Guid.NewGuid(),
                         StartDateTime = DateTime.Now,
@@ -52,7 +52,7 @@ namespace StatementProcessorApi.Services
                 }
                 else
                 {
-                   return  new JobDto
+                    return new JobDto
                     {
                         Id = job.Id,
                         JobId = job.JobId,
@@ -84,7 +84,7 @@ namespace StatementProcessorApi.Services
                     SendEmail = true,
                 });
 
-              
+
             }
 
             return null;
@@ -142,25 +142,27 @@ namespace StatementProcessorApi.Services
                     AppUser = parameters.AppUser
                 });
 
+                var keyFile = new PrivateKeyFile(settings.Value.KeyFile!);
 
+                using var ftpClient = new SftpClient(settings.Value.FtpHostUrl!, 22, settings.Value.FtpUser!, keyFile);
                 //may need credentials? need ftp info
-                await using (var ftpClient = new AsyncFtpClient(settings.Value.FtpHostUrl))
+
+                await ftpClient.ConnectAsync(CancellationToken.None);
+
+                if (ftpClient.IsConnected)
                 {
-                    await ftpClient.Connect();
-
-                    if (ftpClient.IsConnected)
+                    if (parameters.ZipFileName != null)
                     {
-                        var ftpStatus = await ftpClient.UploadFile(parameters.ZipFileName, $"{settings.Value.UploadFtpUrl}{Path.GetFileName(parameters.ZipFileName)}");
-
-                        if (ftpStatus != FtpStatus.Success)
-                            throw new FtpException($"Unable to upload file {Path.GetFileName(parameters.ZipFileName)}");
-                    }
-                    else
-                    {
-                        throw new FtpException(
-                            $"Unable to create ftp connection to {settings.Value.UploadFtpUrl}{Path.GetFileName(parameters.ZipFileName)}");
+                        await using var localStream = File.Create(parameters.ZipFileName);
+                        await ftpClient.UploadFileAsync(localStream, $"{settings.Value.UploadFtpUrl}{Path.GetFileName(parameters.ZipFileName)}", CancellationToken.None);
                     }
                 }
+                else
+                {
+                    throw new SftpException(StatusCode.Failure, $"Unable to create ftp connection to {settings.Value.UploadFtpUrl}{Path.GetFileName(parameters.ZipFileName)}");
+
+                }
+
 
                 await WriteJob(new WriteJobStepParameters
                 {
@@ -247,7 +249,7 @@ namespace StatementProcessorApi.Services
 
             try
             {
-                
+
                 if (currentJob == null) throw new DataException("Unable to retrieve current job");
 
 
@@ -277,7 +279,7 @@ namespace StatementProcessorApi.Services
 
                     });
                 }
-               
+
 
                 if (parameters.ReachedWaitLimit)
                 {
@@ -323,15 +325,15 @@ namespace StatementProcessorApi.Services
 
                     await ZipFile.ExtractToDirectoryAsync(parameters.DownloadedFile, extractDir);
 
-                   var dir = await dataService.AddProcessFile(new ProcessObjects
+                    var dir = await dataService.AddProcessFile(new ProcessObjects
                     {
                         FileDirName = Path.GetFileNameWithoutExtension(parameters.DownloadedFile),
                         JobId = currentJob.JobId
                     }, appUser);
 
-                   //delete the downloaded zip file
-                   File.Delete(Path.Combine(exactTo?.UncPath!,
-                       Path.GetFileName(parameters.DownloadedFile)));
+                    //delete the downloaded zip file
+                    File.Delete(Path.Combine(exactTo?.UncPath!,
+                        Path.GetFileName(parameters.DownloadedFile)));
 
                     await WriteJob(new WriteJobStepParameters
                     {
@@ -341,7 +343,7 @@ namespace StatementProcessorApi.Services
                     });
 
                     return dir?.GetType() == typeof(ProcessObjects);
-                   
+
 
                 }
 
@@ -357,7 +359,7 @@ namespace StatementProcessorApi.Services
                         AppUser = currentJob.JobUser
                     });
                 }
-               
+
                 var logMsg = $"Error: {ex.Message}";
 
                 if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
@@ -482,7 +484,7 @@ namespace StatementProcessorApi.Services
                     return false;
                 }
 
-              
+
 
             }
             catch (Exception ex)
@@ -522,14 +524,16 @@ namespace StatementProcessorApi.Services
         {
             try
             {
-                await using var ftpClient = new AsyncFtpClient(settings.Value.FtpHostUrl);
-                await ftpClient.Connect();
-
+                var keyFile = new PrivateKeyFile(settings.Value.KeyFile!);
+                using var ftpClient = new SftpClient(settings.Value.FtpHostUrl!, 22, settings.Value.FtpUser!, keyFile);
+                await ftpClient.ConnectAsync(CancellationToken.None);
                 if (!ftpClient.IsConnected)
                 {
-                    throw new FtpException(
+                    throw new SftpException(StatusCode.Failure,
                         $"Unable to create ftp connection to {settings.Value.FtpHostUrl}");
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -559,8 +563,8 @@ namespace StatementProcessorApi.Services
 
             try
             {
-                
-               
+
+
                 var serviceList = await dataService.GetServices(parameters.AppUser);
 
                 var compSvc =
@@ -619,7 +623,7 @@ namespace StatementProcessorApi.Services
             return false;
         }
 
-       
+
     }
 
 }

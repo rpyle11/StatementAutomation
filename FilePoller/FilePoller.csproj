@@ -27,4 +27,10 @@
   <ItemGroup>
     <ProjectReference Include="..\StatementProcessorModels\StatementProcessorModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="prikey.ppk">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

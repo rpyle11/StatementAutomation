@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="54.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="10.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.7" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.14.6" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
+    <PackageReference Include="SSH.NET" Version="2025.1.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="10.0.7" />
     <PackageReference Include="System.Management" Version="10.0.7" />
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="10.0.7" />
@@ -25,6 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StatementProcessorModels\StatementProcessorModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="prikey.ppk">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

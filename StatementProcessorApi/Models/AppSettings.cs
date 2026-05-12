@@ -42,5 +42,9 @@
 
         public string? CountsMsgBody { get; set; }
 
+        public string? KeyFile { get; init; }
+
+        public string? FtpUser { get; init; }
+
     }
 }

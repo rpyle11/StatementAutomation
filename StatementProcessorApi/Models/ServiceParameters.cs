@@ -5,7 +5,7 @@
        public string? RemoteServer { get; init; } 
        public string? ServiceName { get; init; }
 
-       public Guid JobId { get; set; }
-       public string? AppUser { get; set; }
+       public Guid JobId { get; init; }
+       public string? AppUser { get; init; }
     }
 }

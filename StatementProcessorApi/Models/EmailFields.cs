@@ -21,12 +21,12 @@ namespace StatementProcessorApi.Models
         public string? ToAddress { get; init; }
 
         [MaxLength(4000)]
-        public string? CcAddress { get; set; }
+        public string? CcAddress { get; init; }
 
         [Required]
         public bool UseHtml { get; init; }
 
-        public List<string?>? Attachments { get; set; }
+        public List<string?>? Attachments { get; init; }
 
 
 

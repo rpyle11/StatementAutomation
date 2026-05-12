@@ -128,25 +128,29 @@ namespace FilePoller
                         Thread.Sleep(TimeSpan.FromSeconds(10));
                         var remoteFile = sftpFiles.FirstOrDefault()?.FullName;
 
+                        if (!remoteFile!.EndsWith(".zip"))
+                            throw new SftpException(StatusCode.Failure,
+                                "Selected file is not a ZIP file and cannot be downloaded");
+
                         var downloadTo = await dataService.GetDirectory(settings.Value.DownloadToName);
 
                         if (downloadTo == null)
                             throw new DataException(
                                 $"Unable to get directory data for {settings.Value.DownloadToName}");
 
-                        await using (var localStream = File.Create(Path.Combine(downloadTo.UncPath, remoteFile!)))
+                        await using (var localStream = File.Create(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!)))
                         {
                             await ftpClient.DownloadFileAsync(sftpFiles.FirstOrDefault()?.FullName!, localStream);
                         }
 
-                        await WriteLogData($"Downloading file: {remoteFile} to {downloadTo.UncPath}");
+                        await WriteLogData($"Downloading file: {Path.GetFileName(remoteFile)} to {downloadTo.UncPath}");
 
                       
 
-                        if (File.Exists(Path.Combine(downloadTo.UncPath, remoteFile!)))
+                        if (File.Exists(Path.Combine(downloadTo.UncPath, Path.GetFileName(remoteFile)!)))
                         {
 
-                            await WriteLogData($"File: {remoteFile} successfully downloaded");
+                            await WriteLogData($"File: {Path.GetFileName(remoteFile)} successfully downloaded");
 
                             await WriteLogData($"Deleting file {Path.GetFileName(remoteFile)} from FTP folder");
 
@@ -214,7 +218,6 @@ namespace FilePoller
                     logMsg += $"Inner Message {ex.InnerException.Message}";
                 }
 
-
                 Log.Error("Error {logMsg}", logMsg);
 
                 await logService.LogAlert(new AppLog
@@ -235,12 +238,12 @@ namespace FilePoller
             {
                 Log.Information(message);
 
-                //await stepLogger.WriteProcessLog(new WriteJobStepParameters
-                //{
-                //    JobId = _currentJob!.JobId,
-                //    Message = message,
-                //    AppUser = _currentJob.JobUser
-                //});
+                await stepLogger.WriteProcessLog(new WriteJobStepParameters
+                {
+                    JobId = _currentJob!.JobId,
+                    Message = message,
+                    AppUser = _currentJob.JobUser
+                });
 
             }
             catch (Exception ex)
